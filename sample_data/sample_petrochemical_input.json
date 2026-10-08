@@ -1,0 +1,41 @@
+{
+  "layout_id": "petro_demo",
+  "plant_type": "petrochemical",
+  "boundary": [
+    {"easting": 260, "northing": 180},
+    {"easting": 0, "northing": 0},
+    {"easting": 260, "northing": 0},
+    {"easting": 0, "northing": 180}
+  ],
+  "system_groups": [
+    {"group_id": "feed", "name": "Feed Handling", "preferred_radius": 70},
+    {"group_id": "process", "name": "Main Process", "preferred_radius": 70},
+    {"group_id": "storage", "name": "Storage", "preferred_radius": 85},
+    {"group_id": "utilities", "name": "Utilities", "preferred_radius": 85}
+  ],
+  "units": [
+    {"unit_id": "feed_pump", "name": "Feed Pump", "category": "process", "shape_type": "rectangle", "width": 12, "length": 10, "system_group": "feed", "process_order": 1, "required_clearance": 2},
+    {"unit_id": "process_skid", "name": "Process Skid", "category": "process", "shape_type": "rectangle", "width": 24, "length": 18, "system_group": "process", "process_order": 2, "required_clearance": 3},
+    {"unit_id": "product_tank", "name": "Product Tank", "category": "process", "shape_type": "circle", "diameter": 24, "system_group": "storage", "process_order": 3, "required_clearance": 3},
+    {"unit_id": "utility_building", "name": "Utility Building", "category": "utility", "shape_type": "rectangle", "width": 16, "length": 12, "system_group": "utilities", "required_clearance": 2, "access_required": true, "max_access_distance": 110, "access_classification": "soft"}
+  ],
+  "flow_edges": [
+    {"edge_id": "P1", "source_unit_id": "feed_pump", "target_unit_id": "process_skid", "flow_type": "other"},
+    {"edge_id": "P2", "source_unit_id": "process_skid", "target_unit_id": "product_tank", "flow_type": "other"}
+  ],
+  "proximity_relationships": [
+    {"relationship_id": "user_access", "unit_id_a": "feed_pump", "unit_id_b": "process_skid", "relationship_type": "max_distance", "distance": 75, "classification": "soft", "weight": 1},
+    {"relationship_id": "user_separation", "unit_id_a": "product_tank", "unit_id_b": "utility_building", "relationship_type": "min_distance", "distance": 15, "classification": "hard", "weight": 1}
+  ],
+  "site_zones": [
+    {"zone_id": "canal_reserve", "name": "Illustrative canal reserve", "zone_type": "exclusion", "classification": "hard", "provenance": "sample_project", "vertices": [{"easting": 4, "northing": 151}, {"easting": 14, "northing": 151}, {"easting": 14, "northing": 175}, {"easting": 4, "northing": 175}]}
+  ],
+  "existing_structures": [
+    {"structure_id": "fixed_substation", "name": "Existing substation", "clearance": 2, "vertices": [{"easting": 225, "northing": 135}, {"easting": 248, "northing": 135}, {"easting": 248, "northing": 165}, {"easting": 225, "northing": 165}]}
+  ],
+  "corridors": [
+    {"corridor_id": "site_access", "name": "Existing access", "corridor_type": "access", "width": 4, "classification": "hard", "path": [{"easting": 15, "northing": 7}, {"easting": 235, "northing": 7}]},
+    {"corridor_id": "user_pipe_rack", "name": "Illustrative pipe rack corridor", "corridor_type": "routing", "width": 5, "classification": "soft", "path": [{"easting": 50, "northing": 75}, {"easting": 210, "northing": 75}]}
+  ],
+  "metadata": {"project_name": "Petrochemical Concept Demo", "distance_source": "user supplied; illustrative, not regulatory"}
+}

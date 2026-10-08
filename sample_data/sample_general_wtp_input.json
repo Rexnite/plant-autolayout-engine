@@ -1,0 +1,47 @@
+{
+  "layout_id": "general_wtp_demo",
+  "plant_type": "wtp",
+  "boundary": [
+    {"easting": 240, "northing": 170},
+    {"easting": 0, "northing": 0},
+    {"easting": 240, "northing": 0},
+    {"easting": 0, "northing": 170}
+  ],
+  "system_groups": [
+    {"group_id": "hydraulic", "name": "Hydraulic Process", "preferred_radius": 65},
+    {"group_id": "sludge", "name": "Sludge Handling", "preferred_radius": 65},
+    {"group_id": "chemical", "name": "Chemical", "preferred_radius": 90}
+  ],
+  "units": [
+    {"unit_id": "inlet", "name": "Raw Water Inlet", "category": "process", "shape_type": "rectangle", "width": 12, "length": 10, "system_group": "hydraulic", "process_order": 1, "required_clearance": 2},
+    {"unit_id": "mixer", "name": "Flash Mixer", "category": "process", "shape_type": "rectangle", "width": 10, "length": 10, "system_group": "hydraulic", "process_order": 2, "required_clearance": 2},
+    {"unit_id": "clarifier", "name": "Clarifier", "category": "process", "shape_type": "circle", "diameter": 24, "system_group": "hydraulic", "process_order": 3, "required_clearance": 3},
+    {"unit_id": "sludge_sump", "name": "Sludge Sump", "category": "sludge", "shape_type": "rectangle", "width": 12, "length": 12, "system_group": "sludge", "required_clearance": 3},
+    {"unit_id": "chemical_house", "name": "Chemical House", "category": "chemical", "shape_type": "rectangle", "width": 14, "length": 12, "system_group": "chemical", "required_clearance": 3, "access_required": true, "max_access_distance": 100, "access_classification": "soft"}
+  ],
+  "flow_edges": [
+    {"edge_id": "F1", "source_unit_id": "inlet", "target_unit_id": "mixer", "flow_type": "process_water"},
+    {"edge_id": "F2", "source_unit_id": "mixer", "target_unit_id": "clarifier", "flow_type": "process_water"},
+    {"edge_id": "F3", "source_unit_id": "clarifier", "target_unit_id": "sludge_sump", "flow_type": "sludge"},
+    {"edge_id": "F4", "source_unit_id": "chemical_house", "target_unit_id": "mixer", "flow_type": "chemical"}
+  ],
+  "proximity_relationships": [
+    {"relationship_id": "R1", "unit_id_a": "mixer", "unit_id_b": "clarifier", "relationship_type": "max_distance", "distance": 60, "classification": "soft", "weight": 1},
+    {"relationship_id": "R2", "unit_id_a": "sludge_sump", "unit_id_b": "chemical_house", "relationship_type": "min_distance", "distance": 20, "classification": "soft", "weight": 1}
+  ],
+  "group_relationships": [
+    {"relationship_id": "hydraulic_sludge_buffer", "group_id_a": "hydraulic", "group_id_b": "sludge", "relationship_type": "min_distance", "distance": 12, "classification": "soft", "weight": 0.5}
+  ],
+  "site_zones": [
+    {"zone_id": "northwest_no_build", "name": "Illustrative no-build area", "zone_type": "exclusion", "classification": "hard", "provenance": "sample_project", "vertices": [{"easting": 4, "northing": 137}, {"easting": 25, "northing": 137}, {"easting": 25, "northing": 165}, {"easting": 4, "northing": 165}]},
+    {"zone_id": "future_expansion", "name": "Future expansion", "zone_type": "expansion", "classification": "soft", "weight": 0.2, "provenance": "sample_project", "vertices": [{"easting": 183, "northing": 20}, {"easting": 230, "northing": 20}, {"easting": 230, "northing": 82}, {"easting": 183, "northing": 82}]}
+  ],
+  "existing_structures": [
+    {"structure_id": "existing_workshop", "name": "Existing workshop", "clearance": 2, "vertices": [{"easting": 8, "northing": 8}, {"easting": 27, "northing": 8}, {"easting": 27, "northing": 22}, {"easting": 8, "northing": 22}]}
+  ],
+  "corridors": [
+    {"corridor_id": "south_access", "name": "South access", "corridor_type": "access", "width": 6, "classification": "hard", "path": [{"easting": 30, "northing": 15}, {"easting": 210, "northing": 15}]},
+    {"corridor_id": "process_pipe_route", "name": "Process pipe route", "corridor_type": "routing", "width": 4, "classification": "soft", "path": [{"easting": 55, "northing": 65}, {"easting": 180, "northing": 65}]}
+  ],
+  "metadata": {"project_name": "Generalized WTP Demo", "site_rule_source": "illustrative project input"}
+}

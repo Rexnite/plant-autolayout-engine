@@ -1,0 +1,22 @@
+{
+  "wtp": {
+    "name": "Demo A - Water Treatment Plant",
+    "input": "sample_data/sample_general_wtp_input.json",
+    "algorithm": "simulated_annealing",
+    "candidate_count": 10,
+    "iterations": 100,
+    "seed": 42,
+    "layout_mode": "balanced",
+    "note": "Illustrative preliminary WTP layout; validate all dimensions and rules before engineering use."
+  },
+  "petrochemical": {
+    "name": "Demo B - Petrochemical Plant",
+    "input": "sample_data/sample_petrochemical_input.json",
+    "algorithm": "simulated_annealing",
+    "candidate_count": 10,
+    "iterations": 100,
+    "seed": 42,
+    "layout_mode": "balanced",
+    "note": "All petrochemical distances are illustrative user-defined inputs, not regulatory values."
+  }
+}

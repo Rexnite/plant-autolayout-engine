@@ -1,0 +1,293 @@
+{
+  "layout_id": "sample_wtp_layout",
+  "boundary": [
+    {
+      "boundary_id": "B-SAMPLE-001",
+      "coordinate_system": "local_grid_m",
+      "easting": 0.0,
+      "northing": 0.0,
+      "vertex_order": 1
+    },
+    {
+      "boundary_id": "B-SAMPLE-001",
+      "coordinate_system": "local_grid_m",
+      "easting": 180.0,
+      "northing": 0.0,
+      "vertex_order": 2
+    },
+    {
+      "boundary_id": "B-SAMPLE-001",
+      "coordinate_system": "local_grid_m",
+      "easting": 210.0,
+      "northing": 90.0,
+      "vertex_order": 3
+    },
+    {
+      "boundary_id": "B-SAMPLE-001",
+      "coordinate_system": "local_grid_m",
+      "easting": 130.0,
+      "northing": 160.0,
+      "vertex_order": 4
+    },
+    {
+      "boundary_id": "B-SAMPLE-001",
+      "coordinate_system": "local_grid_m",
+      "easting": 20.0,
+      "northing": 140.0,
+      "vertex_order": 5
+    }
+  ],
+  "units": [
+    {
+      "unit_id": "raw_water_inlet",
+      "name": "Raw Water Inlet",
+      "category": "hydraulic",
+      "shape_type": "rectangle",
+      "width": 8.0,
+      "length": 12.0,
+      "required_clearance": 3.0,
+      "system_group": "inlet",
+      "hazard_level": "low",
+      "process_order": 1
+    },
+    {
+      "unit_id": "cascade_aerator",
+      "name": "Cascade Aerator",
+      "category": "process",
+      "shape_type": "circle",
+      "diameter": 18.0,
+      "required_clearance": 4.0,
+      "system_group": "aeration",
+      "hazard_level": "low",
+      "process_order": 2
+    },
+    {
+      "unit_id": "flash_mixer",
+      "name": "Flash Mixer",
+      "category": "process",
+      "shape_type": "rectangle",
+      "width": 9.0,
+      "length": 9.0,
+      "required_clearance": 3.0,
+      "system_group": "mixing",
+      "hazard_level": "low",
+      "process_order": 3
+    },
+    {
+      "unit_id": "clarifier",
+      "name": "Clarifier",
+      "category": "process",
+      "shape_type": "circle",
+      "diameter": 32.0,
+      "required_clearance": 5.0,
+      "system_group": "clarification",
+      "hazard_level": "low",
+      "process_order": 4
+    },
+    {
+      "unit_id": "rapid_sand_filter",
+      "name": "Rapid Sand Filter",
+      "category": "process",
+      "shape_type": "rectangle",
+      "width": 24.0,
+      "length": 42.0,
+      "required_clearance": 5.0,
+      "system_group": "filtration",
+      "hazard_level": "low",
+      "process_order": 5
+    },
+    {
+      "unit_id": "chemical_house",
+      "name": "Chemical House",
+      "category": "chemical",
+      "shape_type": "rectangle",
+      "width": 18.0,
+      "length": 24.0,
+      "required_clearance": 6.0,
+      "system_group": "chemical",
+      "hazard_level": "high",
+      "process_order": 3
+    },
+    {
+      "unit_id": "clear_water_reservoir",
+      "name": "Clear Water Reservoir",
+      "category": "clean_water",
+      "shape_type": "rectangle",
+      "width": 35.0,
+      "length": 48.0,
+      "required_clearance": 5.0,
+      "system_group": "treated_water",
+      "hazard_level": "low",
+      "process_order": 6
+    },
+    {
+      "unit_id": "sludge_sump",
+      "name": "Sludge Sump",
+      "category": "sludge",
+      "shape_type": "rectangle",
+      "width": 12.0,
+      "length": 14.0,
+      "required_clearance": 5.0,
+      "system_group": "sludge",
+      "hazard_level": "medium"
+    },
+    {
+      "unit_id": "sludge_thickener",
+      "name": "Sludge Thickener",
+      "category": "sludge",
+      "shape_type": "circle",
+      "diameter": 20.0,
+      "required_clearance": 6.0,
+      "system_group": "sludge",
+      "hazard_level": "medium"
+    },
+    {
+      "unit_id": "admin_building",
+      "name": "Administration Building",
+      "category": "human_occupancy",
+      "shape_type": "rectangle",
+      "width": 18.0,
+      "length": 28.0,
+      "required_clearance": 6.0,
+      "system_group": "administration",
+      "hazard_level": "low"
+    }
+  ],
+  "flow_edges": [
+    {
+      "edge_id": "F-001",
+      "source_unit_id": "raw_water_inlet",
+      "target_unit_id": "cascade_aerator",
+      "flow_type": "process_water",
+      "gravity_required": true,
+      "weight": 1.0
+    },
+    {
+      "edge_id": "F-002",
+      "source_unit_id": "cascade_aerator",
+      "target_unit_id": "flash_mixer",
+      "flow_type": "process_water",
+      "gravity_required": true,
+      "weight": 1.0
+    },
+    {
+      "edge_id": "F-003",
+      "source_unit_id": "flash_mixer",
+      "target_unit_id": "clarifier",
+      "flow_type": "process_water",
+      "gravity_required": true,
+      "weight": 1.0
+    },
+    {
+      "edge_id": "F-004",
+      "source_unit_id": "clarifier",
+      "target_unit_id": "rapid_sand_filter",
+      "flow_type": "process_water",
+      "gravity_required": true,
+      "weight": 1.0
+    },
+    {
+      "edge_id": "F-005",
+      "source_unit_id": "rapid_sand_filter",
+      "target_unit_id": "clear_water_reservoir",
+      "flow_type": "process_water",
+      "gravity_required": true,
+      "weight": 1.0
+    },
+    {
+      "edge_id": "F-006",
+      "source_unit_id": "clarifier",
+      "target_unit_id": "sludge_sump",
+      "flow_type": "sludge",
+      "gravity_required": false,
+      "weight": 0.8
+    },
+    {
+      "edge_id": "F-007",
+      "source_unit_id": "sludge_sump",
+      "target_unit_id": "sludge_thickener",
+      "flow_type": "sludge",
+      "gravity_required": false,
+      "weight": 0.8
+    },
+    {
+      "edge_id": "F-008",
+      "source_unit_id": "chemical_house",
+      "target_unit_id": "flash_mixer",
+      "flow_type": "chemical",
+      "gravity_required": false,
+      "weight": 0.6
+    }
+  ],
+  "constraints": [
+    {
+      "constraint_id": "C-001",
+      "name": "Boundary Containment",
+      "constraint_type": "boundary",
+      "classification": "hard",
+      "severity": "critical",
+      "weight": 1.0,
+      "enabled": true,
+      "description": "All units must remain inside the project boundary."
+    },
+    {
+      "constraint_id": "C-002",
+      "name": "Overlap",
+      "constraint_type": "overlap",
+      "classification": "hard",
+      "severity": "critical",
+      "weight": 1.0,
+      "enabled": true,
+      "description": "Unit footprints must not overlap."
+    },
+    {
+      "constraint_id": "C-003",
+      "name": "Minimum Clearance",
+      "constraint_type": "spacing",
+      "classification": "hard",
+      "severity": "critical",
+      "weight": 1.0,
+      "enabled": true,
+      "description": "Required clearance must be respected."
+    },
+    {
+      "constraint_id": "C-009",
+      "name": "Sludge Isolation",
+      "constraint_type": "sludge",
+      "classification": "soft",
+      "severity": "high",
+      "weight": 9.0,
+      "enabled": true,
+      "description": "Sludge facilities should be separated from occupied and clean-water areas."
+    },
+    {
+      "constraint_id": "C-010",
+      "name": "Chemical Safety",
+      "constraint_type": "chemical",
+      "classification": "soft",
+      "severity": "high",
+      "weight": 9.0,
+      "enabled": true,
+      "description": "Chemical facilities should maintain safe separation from occupied areas."
+    },
+    {
+      "constraint_id": "C-006",
+      "name": "Gravity Flow",
+      "constraint_type": "gravity",
+      "classification": "soft",
+      "severity": "high",
+      "weight": 8.0,
+      "enabled": true,
+      "description": "Gravity-preferred process links should follow favorable elevation direction."
+    }
+  ],
+  "optimization_settings": {
+    "layout_mode": "balanced",
+    "candidate_count": 3,
+    "max_iterations": 100
+  },
+  "metadata": {
+    "project_name": "Sample WTP Phase 2 Parser Input",
+    "capacity_mld": 50
+  }
+}
